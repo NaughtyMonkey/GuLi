@@ -1,6 +1,7 @@
 package com.feng.eduservice.controller;
 
 
+import com.feng.commonutils.ResultEntity;
 import com.feng.eduservice.entity.EduTeacher;
 import com.feng.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ import java.util.List;
  * @author MrFeng
  * @since 2021-01-24
  */
-@Api(description="讲师管理")
+@Api(description = "讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
 public class EduTeacherController
@@ -37,22 +38,25 @@ public class EduTeacherController
      */
     @ApiOperation(value = "所有讲师列表")
     @GetMapping("findAll")
-    public List<EduTeacher> findAllTeacher()
+    public ResultEntity findAllTeacher()
     {
-        return teacherService.list(null);
+        List<EduTeacher> list = teacherService.list(null);
+        return ResultEntity.ok().data("items", list);
     }
 
     /**
      * 逻辑删除
+     *
      * @param id 要删除的id
      * @return
      */
     @ApiOperation(value = "根据ID逻辑删除讲师")
-    @ApiImplicitParam(name = "id", value = "讲师ID", required = true)
     @DeleteMapping("{id}")
-    public boolean removeById(@PathVariable String id)
+    public ResultEntity removeById(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id)
     {
-        return teacherService.removeById(id);
+        String str = id;
+        boolean flag = teacherService.removeById(id);
+        return ResultEntity.ok();
     }
 }
 
