@@ -11,5 +11,13 @@
 
     <artifactId>service-base</artifactId>
 
+    <dependencies>
+        <!--统一返回结果类-->
+        <dependency>
+            <groupId>com.feng</groupId>
+            <artifactId>common-utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
