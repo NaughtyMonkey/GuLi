@@ -59,6 +59,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
             //讲师入职时间，le是<=
             queryWrapper.le("gmt_create",end);
         }
+        queryWrapper.orderByDesc("gmt_create");
 
         //条件查询参数都已经设置好了
         baseMapper.selectPage(pageParam,queryWrapper);

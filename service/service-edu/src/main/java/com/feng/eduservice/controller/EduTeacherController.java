@@ -27,6 +27,7 @@ import java.util.List;
 @Api(description = "讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin //跨域
 public class EduTeacherController
 {
 
@@ -117,15 +118,15 @@ public class EduTeacherController
     @GetMapping("queryTeacher/{id}")
     public ResultEntity queryTeacherById(@PathVariable String id)
     {
-        try
-        {
-            int i = 10 / 0;//全局异常测试
-        } catch (ArithmeticException e)
-        {
-            throw new GuliException(2001,"自定义算数异常！");
-        }
+//        try
+//        {
+//            int i = 10 / 0;//全局异常测试
+//        } catch (ArithmeticException e)
+//        {
+//            throw new GuliException(2001,"自定义算数异常！");
+//        }
         EduTeacher teacher = teacherService.getById(id);
-        return ResultEntity.ok().data("item", teacher);
+        return ResultEntity.ok().data("teacher", teacher);
     }
 
     @ApiOperation(value = "根据讲师ID修改讲师")
